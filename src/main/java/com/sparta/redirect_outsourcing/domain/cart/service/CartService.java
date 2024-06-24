@@ -24,6 +24,7 @@ public class CartService {
     private final CartAdapter cartAdapter;
     private final CartItemAdapter cartItemAdapter;
     private final MenuAdapter menuAdapter;
+    private final UserAdapter userAdapter;
 
     @Transactional
     public CartItemResponseDto addItemToCart(User loginUser, CartItemRequestDto requestDto) {
