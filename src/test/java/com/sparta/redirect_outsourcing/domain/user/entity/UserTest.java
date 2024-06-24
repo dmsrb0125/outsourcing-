@@ -13,7 +13,7 @@ import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class UserTest {
+public class UserTest {
     private Validator validator;
 
     @BeforeEach
@@ -28,11 +28,11 @@ class UserTest {
         user.setPassword("testPassword");
         user.setNickname("testNickname");
         user.setIntroduce("Hello, I am a test user.");
-        user.setPictureUrl("http://example.com/picture.jpg");
+        user.setPictureUrl("https://example.com/picture.jpg");
         user.setUserStatus(UserStatusEnum.STATUS_NORMAL);
         user.setUserRole(UserRoleEnum.ROLE_USER);
         user.setRefreshToken("testRefreshToken");
-        user.setKakaoId("testKakaoId");
+        user.setKakaoId(123456L);  // Long 타입으로 변경
         user.setPreviousPasswords(List.of("oldPassword1", "oldPassword2"));
         return user;
     }
@@ -48,11 +48,11 @@ class UserTest {
         assertThat(user.getPassword()).isEqualTo("testPassword");
         assertThat(user.getNickname()).isEqualTo("testNickname");
         assertThat(user.getIntroduce()).isEqualTo("Hello, I am a test user.");
-        assertThat(user.getPictureUrl()).isEqualTo("http://example.com/picture.jpg");
+        assertThat(user.getPictureUrl()).isEqualTo("https://example.com/picture.jpg");
         assertThat(user.getUserStatus()).isEqualTo(UserStatusEnum.STATUS_NORMAL);
         assertThat(user.getUserRole()).isEqualTo(UserRoleEnum.ROLE_USER);
         assertThat(user.getRefreshToken()).isEqualTo("testRefreshToken");
-        assertThat(user.getKakaoId()).isEqualTo("testKakaoId");
+        assertThat(user.getKakaoId()).isEqualTo(123456L);  // Long 타입으로 변경
         assertThat(user.getPreviousPasswords()).containsExactly("oldPassword1", "oldPassword2");
     }
 
@@ -139,11 +139,11 @@ class UserTest {
         user.setPassword("testPassword");
         user.setNickname("testNickname");
         user.setIntroduce("Hello, I am a test user.");
-        user.setPictureUrl("http://example.com/picture.jpg");
+        user.setPictureUrl("https://example.com/picture.jpg");
         user.setUserStatus(UserStatusEnum.STATUS_NORMAL);
         user.setUserRole(UserRoleEnum.ROLE_USER);
         user.setRefreshToken("testRefreshToken");
-        user.setKakaoId("testKakaoId");
+        user.setKakaoId(123456L);  // Long 타입으로 변경
         user.setPreviousPasswords(List.of("oldPassword1", "oldPassword2"));
 
         // then
@@ -151,11 +151,11 @@ class UserTest {
         assertThat(user.getPassword()).isEqualTo("testPassword");
         assertThat(user.getNickname()).isEqualTo("testNickname");
         assertThat(user.getIntroduce()).isEqualTo("Hello, I am a test user.");
-        assertThat(user.getPictureUrl()).isEqualTo("http://example.com/picture.jpg");
+        assertThat(user.getPictureUrl()).isEqualTo("https://example.com/picture.jpg");
         assertThat(user.getUserStatus()).isEqualTo(UserStatusEnum.STATUS_NORMAL);
         assertThat(user.getUserRole()).isEqualTo(UserRoleEnum.ROLE_USER);
         assertThat(user.getRefreshToken()).isEqualTo("testRefreshToken");
-        assertThat(user.getKakaoId()).isEqualTo("testKakaoId");
+        assertThat(user.getKakaoId()).isEqualTo(123456L);  // Long 타입으로 변경
         assertThat(user.getPreviousPasswords()).containsExactly("oldPassword1", "oldPassword2");
     }
 }
