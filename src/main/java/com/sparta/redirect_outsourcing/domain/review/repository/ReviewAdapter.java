@@ -2,9 +2,9 @@ package com.sparta.redirect_outsourcing.domain.review.repository;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.sparta.redirect_outsourcing.common.ResponseCodeEnum;
+import com.sparta.redirect_outsourcing.domain.like.entity.QReviewLike;
 import com.sparta.redirect_outsourcing.domain.review.entity.QReview;
 import com.sparta.redirect_outsourcing.domain.review.entity.Review;
-import com.sparta.redirect_outsourcing.domain.like.entity.QReviewLike;
 import com.sparta.redirect_outsourcing.exception.custom.review.ReviewException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

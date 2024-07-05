@@ -1,6 +1,7 @@
 package com.sparta.redirect_outsourcing.domain.user.entity;
 
 import com.sparta.redirect_outsourcing.common.TimeStampEntity;
+import com.sparta.redirect_outsourcing.domain.like.entity.RestaurantLike;
 import com.sparta.redirect_outsourcing.domain.like.entity.ReviewLike;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -61,6 +62,9 @@ public class User extends TimeStampEntity {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ReviewLike> reviewLikes = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<RestaurantLike> restaurantLikes = new ArrayList<>();
 
     public User(Long kakaoId, String username, String pictureUrl, String password) {
         this.kakaoId = kakaoId;

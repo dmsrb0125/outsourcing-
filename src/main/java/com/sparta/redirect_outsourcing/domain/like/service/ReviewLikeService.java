@@ -40,7 +40,7 @@ public class ReviewLikeService {
         likeAdapter.saveReviewLike(reviewLike);
 
         // 리뷰 좋아요 수 업데이트
-        likeAdapter.updateReviewLikeCount(reviewId);
+        reviewAdapter.updateLikeCount(reviewId);
     }
 
     @Transactional
@@ -48,6 +48,6 @@ public class ReviewLikeService {
         likeAdapter.deleteReviewLike(userId, reviewId);
 
         // 리뷰 좋아요 수 업데이트
-        likeAdapter.updateReviewLikeCount(reviewId);
+        reviewAdapter.updateLikeCount(reviewId);
     }
 }
