@@ -9,14 +9,12 @@ import java.time.LocalDateTime;
 @Getter
 public class RestaurantResponseDto {
     private String name;
-
     private String address;
-
     private RestaurntCategoryEnum categoryEnum;
-
     private String description;
-
+    private int likeCount;
     private LocalDateTime createdAt;
+
 
     public RestaurantResponseDto(Restaurant restaurant) {
         this.name = restaurant.getName();
@@ -24,7 +22,6 @@ public class RestaurantResponseDto {
         this.categoryEnum = restaurant.getCategory();
         this.description = restaurant.getDescription();
         this.createdAt = restaurant.getCreatedAt();
-
+        this.likeCount = restaurant.getLikeCount();
     }
-
 }

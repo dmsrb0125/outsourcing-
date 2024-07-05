@@ -48,7 +48,7 @@ public enum ResponseCodeEnum {
 
     //좋아요
     USER_ALREADY_LIKED(HttpStatus.BAD_REQUEST, "이미 좋아요를 추가했습니다"),
-    USER_CANNOT_LIKE_OWN_REVIEW(HttpStatus.BAD_REQUEST,"자신이 작성한 리뷰에는 좋아요를 누를 수 없습니다.");
+    USER_CANNOT_LIKE_OWN_REVIEW(HttpStatus.BAD_REQUEST,"자신이 등록한 것에는 좋아요를 누를 수 없습니다.");
     ;
     private final HttpStatus httpStatus;
     private final String message;

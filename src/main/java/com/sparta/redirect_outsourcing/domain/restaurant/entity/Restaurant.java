@@ -2,6 +2,7 @@ package com.sparta.redirect_outsourcing.domain.restaurant.entity;
 
 import com.sparta.redirect_outsourcing.common.ResponseCodeEnum;
 import com.sparta.redirect_outsourcing.common.TimeStampEntity;
+import com.sparta.redirect_outsourcing.domain.like.entity.RestaurantLike;
 import com.sparta.redirect_outsourcing.domain.menu.entity.Menu;
 import com.sparta.redirect_outsourcing.domain.restaurant.dto.requestDto.RestaurantCreateRequestDto;
 import com.sparta.redirect_outsourcing.domain.restaurant.dto.requestDto.RestaurantUpdateRequestDto;
@@ -25,15 +26,18 @@ public class Restaurant extends TimeStampEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "users_id")
     private User user;
 
-    @OneToMany(mappedBy = "restaurant",cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Review> reviews = new ArrayList<>();
 
-    @OneToMany(mappedBy = "restaurant",cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Menu> menus = new ArrayList<>();
+
+    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<RestaurantLike> likes = new ArrayList<>();
 
     @Column(nullable = false)
     private String name;
@@ -47,12 +51,16 @@ public class Restaurant extends TimeStampEntity {
 
     private String description;
 
+    @Column(nullable = false)
+    private int likeCount; // 좋아요 수 필드 추가
+
     public Restaurant(User user, String name, String address, RestaurntCategoryEnum category, String description) {
         this.user = user;
         this.name = name;
         this.address = address;
         this.category = category;
         this.description = description;
+        this.likeCount = 0; // 초기 좋아요 수 설정
     }
 
     public Restaurant(RestaurantCreateRequestDto createReq, User user) {
@@ -61,6 +69,7 @@ public class Restaurant extends TimeStampEntity {
         this.address = createReq.getAddress();
         this.category = enumCheck(createReq.getCategory());
         this.description = createReq.getDescription();
+        this.likeCount = 0; // 초기 좋아요 수 설정
     }
 
     public void update(RestaurantUpdateRequestDto updateReq) {
@@ -69,11 +78,12 @@ public class Restaurant extends TimeStampEntity {
         this.category = enumCheck(updateReq.getCategory());
         this.description = updateReq.getDescription();
     }
+
     //예외처리 카테고리 양식에 맞지 않을 경우
     private RestaurntCategoryEnum enumCheck(String reqCategory) {
-        String categoryName= RestaurntCategoryEnum.checkCategory(reqCategory);
+        String categoryName = RestaurntCategoryEnum.checkCategory(reqCategory);
 
-        if(categoryName!=null)
+        if (categoryName != null)
             return RestaurntCategoryEnum.valueOf(categoryName);
         else
             throw new NotExistRestaurantCategoryException(ResponseCodeEnum.NOT_EXIST_CATEGORY);
@@ -81,7 +91,7 @@ public class Restaurant extends TimeStampEntity {
 
     public void verify(User user) {
         if (!user.getUsername().equals(this.user.getUsername())) {
-            throw new NotYourRestaurantException(ResponseCodeEnum.NOT_YOUR_RESTAURANT,user);
+            throw new NotYourRestaurantException(ResponseCodeEnum.NOT_YOUR_RESTAURANT, user);
         }
     }
 }
