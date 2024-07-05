@@ -39,5 +39,6 @@ public class Order extends TimeStampEntity {
 
     @Setter
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
     private List<OrderDetail> orderDetails = new ArrayList<>();
 }

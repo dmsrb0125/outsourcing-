@@ -1,7 +1,6 @@
 package com.sparta.redirect_outsourcing.domain.follow.entity;
 
 import com.sparta.redirect_outsourcing.common.TimeStampEntity;
-import com.sparta.redirect_outsourcing.domain.follow.dto.requestDto.FollowCreateRequestDto;
 import com.sparta.redirect_outsourcing.domain.restaurant.entity.Restaurant;
 import com.sparta.redirect_outsourcing.domain.user.entity.User;
 import jakarta.persistence.*;

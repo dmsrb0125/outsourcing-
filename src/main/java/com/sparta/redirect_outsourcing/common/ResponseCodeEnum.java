@@ -43,8 +43,12 @@ public enum ResponseCodeEnum {
     MENU_USER_NOT_MATCH(HttpStatus.FORBIDDEN,"다른 유저가 생성한 메뉴는 수정 삭제 할 수 없습니다."),
 
     //찜하기
-    ALREADY_FOLLOWED(HttpStatus.MULTI_STATUS,"이미 찜한 가게입니다.")
+    ALREADY_FOLLOWED(HttpStatus.MULTI_STATUS,"이미 찜한 가게입니다."),
 
+
+    //좋아요
+    USER_ALREADY_LIKED(HttpStatus.BAD_REQUEST, "이미 좋아요를 추가했습니다"),
+    USER_CANNOT_LIKE_OWN_REVIEW(HttpStatus.BAD_REQUEST,"자신이 작성한 리뷰에는 좋아요를 누를 수 없습니다.");
     ;
     private final HttpStatus httpStatus;
     private final String message;

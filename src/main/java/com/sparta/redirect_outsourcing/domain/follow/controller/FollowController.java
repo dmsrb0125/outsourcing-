@@ -3,7 +3,6 @@ package com.sparta.redirect_outsourcing.domain.follow.controller;
 import com.sparta.redirect_outsourcing.auth.UserDetailsImpl;
 import com.sparta.redirect_outsourcing.common.DataResponseDto;
 import com.sparta.redirect_outsourcing.common.MessageResponseDto;
-import com.sparta.redirect_outsourcing.common.ResponseUtils;
 import com.sparta.redirect_outsourcing.domain.follow.dto.responseDto.FollowResponseDto;
 import com.sparta.redirect_outsourcing.domain.follow.service.FollowService;
 import com.sparta.redirect_outsourcing.domain.user.entity.User;

@@ -9,5 +9,4 @@ public class RedirectOutsourcingApplication {
     public static void main(String[] args) {
         SpringApplication.run(RedirectOutsourcingApplication.class, args);
     }
-
 }
