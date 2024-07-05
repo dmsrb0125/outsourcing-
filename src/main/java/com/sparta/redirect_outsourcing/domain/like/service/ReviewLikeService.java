@@ -3,6 +3,7 @@ package com.sparta.redirect_outsourcing.domain.like.service;
 import com.sparta.redirect_outsourcing.common.ResponseCodeEnum;
 import com.sparta.redirect_outsourcing.domain.like.entity.ReviewLike;
 import com.sparta.redirect_outsourcing.domain.like.repository.LikeAdapter;
+import com.sparta.redirect_outsourcing.domain.review.dto.ReviewResponseDto;
 import com.sparta.redirect_outsourcing.domain.review.entity.Review;
 import com.sparta.redirect_outsourcing.domain.review.repository.ReviewAdapter;
 import com.sparta.redirect_outsourcing.domain.user.entity.User;
@@ -10,6 +11,8 @@ import com.sparta.redirect_outsourcing.domain.user.repository.UserAdapter;
 import com.sparta.redirect_outsourcing.exception.custom.like.AlreadyLikedException;
 import com.sparta.redirect_outsourcing.exception.custom.like.SelfLikeException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -49,5 +52,10 @@ public class ReviewLikeService {
 
         // 리뷰 좋아요 수 업데이트
         reviewAdapter.updateLikeCount(reviewId);
+    }
+
+    @Transactional(readOnly = true)
+    public Page<ReviewResponseDto> findLikedReviews(User user, Pageable pageable) {
+        return likeAdapter.findLikedReviews(user, pageable);
     }
 }

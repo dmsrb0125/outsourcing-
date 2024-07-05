@@ -3,6 +3,7 @@ package com.sparta.redirect_outsourcing.domain.like.service;
 import com.sparta.redirect_outsourcing.common.ResponseCodeEnum;
 import com.sparta.redirect_outsourcing.domain.like.entity.RestaurantLike;
 import com.sparta.redirect_outsourcing.domain.like.repository.LikeAdapter;
+import com.sparta.redirect_outsourcing.domain.restaurant.dto.responseDto.RestaurantResponseDto;
 import com.sparta.redirect_outsourcing.domain.restaurant.entity.Restaurant;
 import com.sparta.redirect_outsourcing.domain.restaurant.repository.RestaurantAdapter;
 import com.sparta.redirect_outsourcing.domain.user.entity.User;
@@ -10,6 +11,8 @@ import com.sparta.redirect_outsourcing.domain.user.repository.UserAdapter;
 import com.sparta.redirect_outsourcing.exception.custom.like.AlreadyLikedException;
 import com.sparta.redirect_outsourcing.exception.custom.like.SelfLikeException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -49,5 +52,10 @@ public class RestaurantLikeService {
 
         // 레스토랑 좋아요 수 업데이트
         restaurantAdapter.updateRestaurantLikeCount(restaurantId);
+    }
+
+    @Transactional(readOnly = true)
+    public Page<RestaurantResponseDto> findLikedRestaurants(User user, Pageable pageable) {
+        return likeAdapter.findLikedRestaurants(user, pageable);
     }
 }
